@@ -21,12 +21,13 @@ Route::get('adicionar-usuario', function () {
     return view('add-user');
 });
 
-Route::get('atualizar-usuario', function () {
-    return view('add-user');
-});
+Route::get('atualizar-usuario/{id}', 'UsuariosController@listarUsuario');
+
+
 
 Route::post('usuarios/criar-usuario', 'UsuariosController@criarUsuario');
 Route::post('usuarios/editar-usuario', 'UsuariosController@atualizarUsuario');
+Route::post('usuarios/excluir-usuario', 'UsuariosController@deletarUsuario');
 
 
 Route::resource('usuarios', 'UsuariosController');

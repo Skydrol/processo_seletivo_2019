@@ -49,7 +49,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Adicionar usuário</h4>
+                        <h4 class="page-title">Atualizar usuário</h4>
                         <div class="d-flex align-items-center">
 
                         </div>
@@ -61,7 +61,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Adicionar usuário</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Atualizar usuário</li>
                                 </ol>
                             </nav>
                         </div>
@@ -74,31 +74,32 @@
                <div class="row">
                    <div class="col-12">
                        <div class="card card-body">
-                           <h4 class="card-title">Adicionar usuário</h4>
-                           <h5 class="card-subtitle"> Preencha os campos para adicionar um novo usuário </h5>
+                           <h4 class="card-title">Atualizar usuário</h4>
+                           <h5 class="card-subtitle"> Preencha os campos para atualizar este usuário </h5>
                            <div class="row">
                                <div class="col-sm-12 col-xs-12">
-                                   <form method="post" action="usuarios/criar-usuario">
+                                   <form method="post" action="usuarios/editar-usuario">
                                     @csrf
                                        <div class="form-group">
                                            <label for="exampleInputEmail111">Nome</label>
-                                           <input type="text" class="form-control" id="exampleInputEmail111" placeholder="Nome do usuário" name="nome">
+                                           <input type="text" class="form-control" id="exampleInputEmail111" placeholder="Nome do usuário" name="nome" value="{{ $usuario -> nome }}">
                                        </div>
                                        <div class="form-group">
                                            <label for="exampleInputEmail12">Email</label>
-                                           <input type="email" class="form-control" id="exampleInputEmail12" placeholder="Email do usuário" name="email">
+                                           <input type="email" class="form-control" id="exampleInputEmail12" placeholder="Email do usuário" name="email" value="{{ $usuario -> email }}">
                                        </div>
                                        <div class="form-group">
                                            <label for="exampleInputPassword11">Senha</label>
-                                           <input type="password" class="form-control" id="exampleInputPassword11" placeholder="Senha" name="senha">
+                                           <input type="password" class="form-control" id="exampleInputPassword11" placeholder="Senha" name="senha" value="{{ $usuario -> senha }}">
                                        </div>
 
                                        <div class="col-md-6">
                                            <div class="form-group">
                                                <label class="control-label">Data de nascimento</label>
-                                               <input type="date" class="form-control" name="dataNascimento">
+                                               <input type="date" class="form-control" name="dataNascimento" value="{{ $usuario -> dataNascimento }}">
                                            </div>
                                        </div>
+                                       <input hidden type="text" name="id" value="{{ $usuario -> id }}">
 
                                        <!--
 
@@ -108,7 +109,7 @@
                                        </div>
 
                                         -->                                       
-                                       <button type="submit" class="btn btn-success mr-2">Adicionar</button>
+                                       <button type="submit" class="btn btn-success mr-2">Atualizar</button>
                                        
                                    </form>
                                </div>

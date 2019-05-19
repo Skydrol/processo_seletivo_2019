@@ -9,7 +9,7 @@
                         <ul id="sidebarnav">
                            
                             <!-- User Profile-->
-                            <li class="nav-small-cap">
+                            <li class="nav-small-cap" style="opacity: 1">
                                 <i class="mdi mdi-dots-horizontal"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </li>

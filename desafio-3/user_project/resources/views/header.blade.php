@@ -11,12 +11,14 @@
                         <!-- ============================================================== -->
                         <!-- Logo -->
                         <!-- ============================================================== -->
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/">
                             <!-- Logo icon -->
                             <b class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="../../logo.png" alt="homepage" class="dark-logo" />
+                                <img src="../../favicon.png" alt="homepage" class="dark-logo" style="display: none;" />
+
+                                <img src="../../favicon.png" alt="homepage" class="light-logo" style="display: none;">
                                
                             </b>
                             <!--End Logo icon -->
@@ -28,6 +30,15 @@
                                 <img src="../../logo.png" class="light-logo" alt="homepage" />
                             </span>
                         </a>
+                        <style type="text/css">
+
+                            .mini-sidebar .light-logo {
+                                display: block!important;
+                                background: #fecc00;
+                                border-radius: 20px;
+                                box-shadow: 0px 0px 27px 3px white;
+                            }
+                        </style>
                         <!-- ============================================================== -->
                         <!-- End Logo -->
                         <!-- ============================================================== -->

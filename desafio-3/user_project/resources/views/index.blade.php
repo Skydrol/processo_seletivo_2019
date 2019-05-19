@@ -118,15 +118,15 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="app-contact-detail.html"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="30" /> {{ $usuario -> nome}}</a>
+                                                        <a href="/atualizar-usuario/{{ $usuario -> id}}"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="30" /> {{ $usuario -> nome}}</a>
                                                     </td>
                                                     <td>{{ $usuario -> email}}</td>
                                                     <td>{{ $usuario -> dataNascimento}}</td>
                                                     
                                                     <td>
-                                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn btn-primary" data-toggle="tooltip" data-original-title="Editar">Editar</button>
+                                                        <a href="/atualizar-usuario/{{ $usuario -> id}}" type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn btn-primary" data-toggle="tooltip" data-original-title="Editar">Editar</a>
 
-                                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn btn-danger" data-toggle="tooltip" data-original-title="Excluir"><i class="ti-close" aria-hidden="true"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn btn-danger sa-confirm" data-toggle="tooltip" data-original-title="Excluir" data-id="{{ $usuario -> id}}"><i class="ti-close" aria-hidden="true"></i></button>
 
                                                     </td>
                                                 </tr>
@@ -134,6 +134,10 @@
                                                 
                                             </tbody>
                                         </table>
+                                        <form hidden id="delete-form" method="post" action="usuarios/excluir-usuario">
+                                            @csrf
+                                            <input id="delete-form-input" type="text" name="id" value="">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -292,6 +296,42 @@
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
         <!--<script src="../../dist/js/pages/datatable/datatable-advanced.init.js"></script>-->
+
+        <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+        <script src="../../assets/libs/sweetalert2/sweet-alert.init.js"></script>
+
+        <script type="text/javascript">
+            
+            $(".sa-confirm").click(function () {
+
+                Swal.fire({
+                    title: 'Está certo disso?',
+                    text: "Esta ação não pode ser revertida!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, pode excluir!'
+                }).then((result) => {
+                    if (result.value) {
+                        
+                        Swal.fire({
+                            title: 'Excluido!',
+                            text: 'O usuário foi excluido com sucesso.',
+                            type: 'success',
+                            onClose: () => {
+                                let id = $(this).data('id');
+                                $('#delete-form-input').val(id);
+                                $('#delete-form').submit();
+                                //alert(id);                                        
+                            }
+                        });
+                    }
+                })
+            });
+
+        </script>
+
         <script type="text/javascript">
             /*************************************************************************************/
             // -->Template Name: Bootstrap Press Admin

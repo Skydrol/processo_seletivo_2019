@@ -12,9 +12,11 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Listar usuários na página principal
     public function index()
     {
-         $usuarios = Usuarios::all();
+        $usuarios = Usuarios::all();
 
         return view('index', compact('usuarios'));
     }
@@ -42,24 +44,50 @@ class UsuariosController extends Controller
         ]);
 
         $usuario->save();
-        return redirect('/')->with('success', 'Stock has been added');
+        return redirect('/')->with('success', 'Usuário adicionado com sucesso');
         
         
     }
 
-    public function listarUsuario()
+    public function listarUsuario($id)
     {
-        //
+        $usuario = Usuarios::find($id);
+
+        return view('edit-user', compact('usuario'));
     }
 
     public function atualizarUsuario(Request $request)
     {
-        //
+
+       $id = $request->input('id');
+
+       $request->validate([
+           'nome'=>'required',
+           'email'=> 'required',
+           'senha' => 'required',
+           'dataNascimento' => 'required'
+       ]);
+
+        $usuario                  = Usuarios::find($id);       
+        $usuario->nome           = $request->get('nome');
+        $usuario->email          = $request->get('email');
+        $usuario->senha          = $request->get('senha');
+        $usuario->dataNascimento = $request->get('dataNascimento');
+       
+
+        $usuario->save();
+        return redirect('/')->with('success', 'Usuário atualizado com sucesso');
     }
 
-    public function deletarUsuario($id)
+    public function deletarUsuario(Request $request)
     {
-        //
+        $id = $request->input('id');
+
+
+        $usuario = Usuarios::find($id);
+        $usuario->delete();
+        return redirect('/')->with('success', 'Usuário excluído com sucesso');
+        
     }
 
     /**
